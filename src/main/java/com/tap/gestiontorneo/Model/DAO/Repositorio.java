@@ -1,4 +1,4 @@
-package com.tap.gestiontorneo.Model;
+package com.tap.gestiontorneo.Model.DAO;
 
 import java.util.List;
 

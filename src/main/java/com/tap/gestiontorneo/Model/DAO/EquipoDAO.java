@@ -1,4 +1,7 @@
-package com.tap.gestiontorneo.Model;
+package com.tap.gestiontorneo.Model.DAO;
+
+import com.tap.gestiontorneo.Model.ConexionDB;
+import com.tap.gestiontorneo.Model.Equipo;
 
 import java.sql.*;
 import java.util.ArrayList;

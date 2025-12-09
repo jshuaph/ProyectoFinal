@@ -19,6 +19,7 @@ public class LogInView extends Application {
         // Título principal
         Label title = new Label("Inicio de Sesión");
         title.getStyleClass().addAll("h2", "text-primary");
+        title.setStyle("-fx-font-weight: bold;");
 
         // Campos
         TextField usernameField = new TextField();
@@ -52,7 +53,7 @@ public class LogInView extends Application {
 //        primaryStage.getIcons().add(icon);
 
         primaryStage.setScene(loginScene);
-        primaryStage.setTitle("Log In");
+        primaryStage.setTitle("Gestión de Torneos");
         primaryStage.show();
     }
 
