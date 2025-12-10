@@ -83,16 +83,7 @@ public class MainView {
     // ============================================================
 
     private Pane buildCuentaView() {
-        Label label = new Label("Cuenta del usuario");
-        label.getStyleClass().addAll("h2", "text-primary");
-
-        Button cerrarSesion = new Button("Cerrar Sesión");
-        cerrarSesion.getStyleClass().addAll("btn", "btn-danger", "btn-lg");
-
-        VBox layout = new VBox(20, label, cerrarSesion);
-        layout.setAlignment(Pos.CENTER);
-
-        return layout;
+        return new CuentaView();
     }
 
     private Pane buildEquiposView() {
