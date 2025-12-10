@@ -13,33 +13,33 @@ public class MainView {
 
     private BorderPane rootLayout;
 
-    // Vistas (solo interfaz)
-    private Pane cuentaView;
-    private Pane equiposView;
-    private Pane tablaView;
-    private Pane calendarioView;
+    // Vistas reales
+    private CuentaView cuentaView;
+    private EquiposView equiposView;
+    private TablaView tablaView;
+    private CalendarioView calendarioView;
 
     public void start(Stage stage) {
 
         rootLayout = new BorderPane();
 
-        // Crear las 4 vistas
-        cuentaView = buildCuentaView();
-        equiposView = buildEquiposView();
-        tablaView = buildTablaView();
-        calendarioView = buildCalendarioView();
+        // Crear instancias de vistas completas
+        cuentaView = new CuentaView();
+        equiposView = new EquiposView();
+        tablaView = new TablaView();
+        calendarioView = new CalendarioView();
 
-        // Sidebar de navegación
+        // Construir menú lateral
         VBox sideMenu = buildSideMenu();
 
-        // Establecer menú lateral y vista inicial
+        // Vista inicial = Cuenta
         rootLayout.setLeft(sideMenu);
         rootLayout.setCenter(cuentaView);
 
-        Scene scene = new Scene(rootLayout, 1000, 600);
+        Scene scene = new Scene(rootLayout, 1100, 650);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
 
-        stage.setTitle("Gestión de Torneos - Panel Principal");
+        stage.setTitle("Gestión de Torneos");
         stage.setScene(scene);
         stage.show();
     }
@@ -47,7 +47,6 @@ public class MainView {
     // ============================================================
     // MENÚ LATERAL
     // ============================================================
-
     private VBox buildSideMenu() {
 
         Label title = new Label("Menú");
@@ -63,7 +62,7 @@ public class MainView {
         tablaBtn.getStyleClass().addAll("btn", "btn-outline-primary", "btn-lg", "m-1");
         calendarioBtn.getStyleClass().addAll("btn", "btn-outline-primary", "btn-lg", "m-1");
 
-        // Acciones: cambian solo la vista central
+        // Cambio de vistas
         cuentaBtn.setOnAction(e -> rootLayout.setCenter(cuentaView));
         equiposBtn.setOnAction(e -> rootLayout.setCenter(equiposView));
         tablaBtn.setOnAction(e -> rootLayout.setCenter(tablaView));
@@ -72,51 +71,11 @@ public class MainView {
         VBox menu = new VBox(12, title, cuentaBtn, equiposBtn, tablaBtn, calendarioBtn);
         menu.setPadding(new Insets(20));
         menu.setAlignment(Pos.TOP_CENTER);
-        menu.setPrefWidth(220);
+        menu.setPrefWidth(230);
         menu.getStyleClass().add("bg-light");
 
         return menu;
     }
 
-    // ============================================================
-    // VISTAS (solo interfaz)
-    // ============================================================
-
-    private Pane buildCuentaView() {
-        return new CuentaView();
-    }
-
-    private Pane buildEquiposView() {
-        Label label = new Label("Gestión de Equipos");
-        label.getStyleClass().addAll("h2", "text-success");
-
-        Label sub = new Label("Aquí el usuario ingresará los equipos y generará los brackets.");
-        sub.getStyleClass().addAll("text-muted");
-
-        VBox layout = new VBox(20, label, sub);
-        layout.setAlignment(Pos.CENTER);
-
-        return layout;
-    }
-
-    private Pane buildTablaView() {
-        Label label = new Label("Tabla de Posiciones");
-        label.getStyleClass().addAll("h2", "text-info");
-
-        VBox layout = new VBox(20, label);
-        layout.setAlignment(Pos.CENTER);
-
-        return layout;
-    }
-
-    private Pane buildCalendarioView() {
-        Label label = new Label("Calendario de Partidos");
-        label.getStyleClass().addAll("h2", "text-warning");
-
-        VBox layout = new VBox(20, label);
-        layout.setAlignment(Pos.CENTER);
-
-        return layout;
-    }
-
 }
+
