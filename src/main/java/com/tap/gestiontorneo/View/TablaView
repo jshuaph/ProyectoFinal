@@ -1,0 +1,48 @@
+package com.tap.gestiontorneo.view;
+
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+
+public class TablaView extends BorderPane {
+
+    private TableView<Object> tabla;
+    private Button btnActualizar;
+
+    public TablaView() {
+
+        setPadding(new Insets(20));
+
+        Label title = new Label("Tabla de Posiciones");
+        title.setFont(new Font(24));
+
+        setTop(title);
+        BorderPane.setMargin(title, new Insets(10));
+
+        tabla = new TableView<>();
+        tabla.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        TableColumn<Object, String> colPos = new TableColumn<>("Posición");
+        TableColumn<Object, String> colEquipo = new TableColumn<>("Equipo");
+        TableColumn<Object, Integer> colPts = new TableColumn<>("Puntos");
+        TableColumn<Object, Integer> colGF = new TableColumn<>("GF");
+        TableColumn<Object, Integer> colGC = new TableColumn<>("GC");
+        TableColumn<Object, Integer> colDif = new TableColumn<>("DIF");
+
+        tabla.getColumns().addAll(colPos, colEquipo, colPts, colGF, colGC, colDif);
+
+        setCenter(tabla);
+
+        btnActualizar = new Button("Actualizar Tabla");
+        btnActualizar.setPrefWidth(200);
+
+        VBox bottom = new VBox(btnActualizar);
+        bottom.setPadding(new Insets(20));
+
+        setBottom(bottom);
+    }
+
+    public TableView<Object> getTabla() { return tabla; }
+    public Button getBtnActualizar() { return btnActualizar; }
+}
